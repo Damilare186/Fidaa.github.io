@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIDA Digital Agency</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #0f2c46;
+            color: white;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            padding: 50px;
+        }
+        .about-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #0f2c46;
+            color: white;
+            padding: 10px;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #0f2c46;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        form button:hover {
+            background-color: #1d4a72;
+        }
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stock-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="  " alt="FIDA Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hidden">
+        <h1>Welcome to FIDA Digital Agency</h1>
+        <p>Unlock Your Digital Potential</p>
+        <img src="leadership-7882178.jpg" alt="Digital Marketing" class="stock-image">
+    </section>
+    
+    <section id="about" class="hidden">
+        <h2>About Us</h2>
+        <p>We are a digital agency focused on helping businesses grow their online presence.</p>
+        <img src="About.jpg" alt="Team Meeting" class="stock-image">
+    </section>
+    
+    <section id="services" class="hidden">
+        <h2>Our Services</h2>
+        <p>We provide top-notch digital marketing services for businesses of all sizes.</p>
+        <img src="Services.jpg" alt="Services" class="stock-image">
+    </section>
+    
+    <section id="portfolio" class="hidden">
+        <h2>Our Work</h2>
+        <p>Check out some of our successful projects.</p>
+        <img src="https://source.unsplash.com/1600x900/?office,success" alt="Portfolio Showcase" class="stock-image">
+    </section>
+    
+    <section id="contact" class="hidden">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <img src="https://source.unsplash.com/1600x900/?customer,service" alt="Customer Support" class="stock-image">
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 FIDA Digital Agency. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll(".hidden");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

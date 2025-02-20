@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIDA - Digital Agency</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #0d2538;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 80px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 8px 12px;
+        }
+        nav ul li a:hover {
+            background-color: #1b3a57;
+            border-radius: 5px;
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #0d2538;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="2.jpg" alt="FIDA Logo">
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h1>Unlock Your Digital Potential</h1>
+        <p>Your trusted digital agency for startups and enterprises.</p>
+        <img src="home-image.jpg" alt="Digital Marketing" class="section-image">
+        <button>Get Started</button>
+    </section>
+    
+    <section id="about">
+        <h2>About Us</h2>
+        <p>FIDA is a results-driven digital agency specializing in marketing strategies that scale businesses.</p>
+        <img src="FIDAWEB.jpg" alt="About Us" class="section-image">
+    </section>
+    
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>SEO Optimization</li>
+            <li>Social Media Marketing</li>
+            <li>Web Development</li>
+            <li>Brand Strategy</li>
+        </ul>
+        <img src="services-image.jpg" alt="Our Services" class="section-image">
+    </section>
+    
+    <section id="portfolio">
+        <h2>Our Work</h2>
+        <div class="portfolio-items">
+            <img src="portfolio-image.jpg" alt="Portfolio" class="section-image">
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 FIDA Digital Agency</p>
+    </footer>
+    
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch("http://localhost:5000/contact", {
+                method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => alert("Message Sent Successfully!"))
+            .catch(error => alert("Error sending message!"));
+        });
+
+        document.addEventListener("scroll", function() {
+            document.querySelectorAll("section").forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.classList.add("visible");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
